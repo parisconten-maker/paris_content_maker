@@ -1,0 +1,206 @@
+"
+              onclick="quickQuestion('How can I get more ("result");
+
+    const copyButton =
+      document.getElementById("copyButton");
+
+
+    if (!selectedPlatform || !selectedTool) {
+
+      result.style.display = "block";
+
+      result.innerText =
+        "Please choose your platform and what you want to create first.";
+
+      copyButton.style.display = "none";
+
+      return;
+    }
+
+
+    if (!input) {
+
+      result.style.display = "block";
+
+      result.innerText =
+        "Tell Paris what you want your content to be about.";
+
+      copyButton.style.display = "none";
+
+      return;
+    }
+
+
+    let output = "";
+
+
+    if (selectedTool === "Funny POV") {
+
+      output =
+        "POV: " +
+        input +
+        "\n\n" +
+        "You thought everything was going well... " +
+        "until life decided to embarrass you 😂";
+
+    }
+
+
+    else if (selectedTool === "Video Idea") {
+
+      output =
+        "🎬 VIDEO IDEA\n\n" +
+        "Platform: " +
+        selectedPlatform +
+        "\n\n" +
+        "Hook: Start with something unexpected about " +
+        input +
+        ".\n\n" +
+        "Scene 1: Show the situation.\n" +
+        "Scene 2: Make the problem bigger.\n" +
+        "Scene 3: Give the funny reaction.\n" +
+        "Ending: Add a surprising or funny twist.";
+
+    }
+
+
+    else if (selectedTool === "Caption") {
+
+      output =
+        "😂 " +
+        input +
+        " but make it unforgettable.\n\n" +
+        "No explanation. Just vibes.";
+
+    }
+
+
+    else if (selectedTool === "Hashtags") {
+
+      output =
+        "#" +
+        input.replace(/\s+/g, "") +
+        " #ContentCreator #FunnyVideos #POV #Nigeria " +
+        "#TikTokNigeria #Creator #Viral";
+
+    }
+
+
+    latestResult = output;
+
+    result.style.display = "block";
+    result.innerText = output;
+
+    copyButton.style.display = "block";
+  }
+
+
+  function copyResult() {
+
+    if (!latestResult) return;
+
+    navigator.clipboard.writeText(latestResult);
+
+    document.getElementById("copyButton").innerText =
+      "✅ Copied!";
+
+    setTimeout(() => {
+
+      document.getElementById("copyButton").innerText =
+        "📋 Copy Result";
+
+    }, 1500);
+  }
+
+
+  function quickQuestion(question) {
+
+    document.getElementById("aiInput").value =
+      question;
+
+  }
+
+
+  function askParisAI() {
+
+    const input =
+      document.getElementById("aiInput").value.trim();
+
+    const result =
+      document.getElementById("aiResult");
+
+    const copyButton =
+      document.getElementById("aiCopy");
+
+
+    if (!input) {
+
+      result.style.display = "block";
+
+      result.innerText =
+        "Ask Paris AI a question first.";
+
+      copyButton.style.display = "none";
+
+      return;
+    }
+
+
+    /*
+      This is the prototype response system.
+
+      A real AI model must be connected through
+      a secure backend later.
+
+      Never put a private AI API key directly
+      inside this browser code.
+    */
+
+
+    let answer =
+      "Paris AI:\n\n" +
+      "For your question: \"" +
+      input +
+      "\"\n\n" +
+
+      "Start by making the content simple, " +
+      "interesting and easy to understand. " +
+      "Use a strong opening, keep the video moving, " +
+      "and give people a reason to watch until the end.\n\n" +
+
+      "This is the first prototype of Paris AI. " +
+      "The full AI connection will be added through " +
+      "a secure backend in the next stage.";
+
+
+    latestAIResult = answer;
+
+    result.style.display = "block";
+
+    result.innerText = answer;
+
+    copyButton.style.display = "block";
+  }
+
+
+  function copyAIResult() {
+
+    if (!latestAIResult) return;
+
+    navigator.clipboard.writeText(latestAIResult);
+
+    document.getElementById("aiCopy").innerText =
+      "✅ Copied!";
+
+    setTimeout(() => {
+
+      document.getElementById("aiCopy").innerText =
+        "📋 Copy Answer";
+
+    }, 1500);
+  }
+
+</script>
+
+</body>
+</html>
