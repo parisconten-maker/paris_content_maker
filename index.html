@@ -1,206 +1,623 @@
-"
-              onclick="quickQuestion('How can I get more ("result");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paris Content Maker</title>
 
-    const copyButton =
-      document.getElementById("copyButton");
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #0b0b0f;
+      color: white;
+      min-height: 100vh;
+    }
+
+    header {
+      height: 65px;
+      background: #111116;
+      border-bottom: 1px solid #292932;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #7c5cff;
+    }
+
+    .header-btn {
+      background: #7c5cff;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 20px;
+      font-weight: bold;
+    }
+
+    .container {
+      max-width: 650px;
+      margin: auto;
+      padding: 20px 14px 90px;
+    }
+
+    .welcome {
+      padding: 25px 5px;
+    }
+
+    .welcome h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .welcome p {
+      color: #aaa;
+    }
+
+    .card {
+      background: #15151c;
+      border: 1px solid #292932;
+      border-radius: 16px;
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .card h2 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: #aaa;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .post-box {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .post-box input {
+      flex: 1;
+      background: #22222b;
+      border: none;
+      outline: none;
+      color: white;
+      padding: 13px;
+      border-radius: 25px;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .primary {
+      width: 100%;
+      border: none;
+      background: #7c5cff;
+      color: white;
+      padding: 13px;
+      border-radius: 10px;
+      font-weight: bold;
+      margin-top: 12px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 15px;
+    }
+
+    .feature {
+      background: #202029;
+      border: 1px solid #30303b;
+      border-radius: 13px;
+      padding: 17px;
+      min-height: 100px;
+    }
+
+    .feature strong {
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .feature span {
+      color: #999;
+      font-size: 13px;
+    }
+
+    .ai {
+      border: 1px solid #5d45bd;
+      background: linear-gradient(145deg, #171326, #15151c);
+    }
+
+    .ai-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .ai-buttons button {
+      padding: 12px;
+      border: 1px solid #49369b;
+      background: #211b38;
+      color: white;
+      border-radius: 10px;
+    }
+
+    .money {
+      color: #55e68a;
+      font-weight: bold;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 65px;
+      background: #111116;
+      border-top: 1px solid #292932;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 20;
+    }
+
+    .nav-item {
+      color: #999;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .nav-item.active {
+      color: #8b6cff;
+    }
+
+    .nav-icon {
+      display: block;
+      font-size: 21px;
+      margin-bottom: 3px;
+    }
+
+    .login-screen {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: #09090d;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      background: #15151c;
+      border: 1px solid #292932;
+      border-radius: 20px;
+      padding: 25px;
+    }
+
+    .login-card h1 {
+      margin-bottom: 8px;
+    }
+
+    .login-card p {
+      color: #999;
+      margin-bottom: 20px;
+    }
+
+    .input {
+      width: 100%;
+      background: #22222b;
+      border: 1px solid #30303b;
+      color: white;
+      padding: 13px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      outline: none;
+    }
+
+    .switch {
+      text-align: center;
+      color: #999;
+      margin-top: 15px;
+      font-size: 14px;
+    }
+
+    .switch button {
+      background: none;
+      border: none;
+      color: #8b6cff;
+      font-weight: bold;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .post-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+      color: #aaa;
+      font-size: 14px;
+    }
+
+    @media (max-width: 450px) {
+      .features {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- LOGIN / SIGN UP -->
+  <section id="authScreen" class="login-screen">
+    <div class="login-card">
+
+      <h1>Paris <span style="color:#7c5cff;">Content Maker</span></h1>
+
+      <p id="authDescription">
+        Create your account and join the community.
+      </p>
+
+      <input
+        id="email"
+        class="input"
+        type="email"
+        placeholder="Email address"
+      >
+
+      <input
+        id="password"
+        class="input"
+        type="password"
+        placeholder="Password"
+      >
+
+      <input
+        id="username"
+        class="input hidden"
+        type="text"
+        placeholder="Choose a username"
+      >
+
+      <button class="primary" onclick="submitAuth()">
+        <span id="authButtonText">Create Account</span>
+      </button>
+
+      <div class="switch">
+        <span id="switchText">Already have an account?</span>
+        <button onclick="toggleAuth()" id="switchButton">
+          Login
+        </button>
+      </div>
+
+    </div>
+  </section>
 
 
-    if (!selectedPlatform || !selectedTool) {
+  <!-- MAIN APP -->
+  <section id="app" class="hidden">
 
-      result.style.display = "block";
+    <header>
+      <div class="logo">PARIS <span>CONTENT MAKER</span></div>
+      <button class="header-btn" onclick="showCredits()">
+        🪙 Credits
+      </button>
+    </header>
 
-      result.innerText =
-        "Please choose your platform and what you want to create first.";
+    <main class="container">
 
-      copyButton.style.display = "none";
+      <div class="welcome">
+        <h1>Welcome to Paris Content Maker 👋</h1>
+        <p>Create, share, discover and use AI tools.</p>
+      </div>
 
-      return;
+
+      <!-- CREATE POST -->
+      <div class="card">
+        <h2>Create a post</h2>
+
+        <div class="post-box">
+          <input
+            id="postInput"
+            type="text"
+            placeholder="What's on your mind?"
+          >
+
+          <button class="header-btn" onclick="createPost()">
+            Post
+          </button>
+        </div>
+      </div>
+
+
+      <!-- AI SHOWCASE -->
+      <div class="card ai">
+        <h2>🤖 AI Showcase</h2>
+
+        <p>
+          Discover AI images, AI videos and creative tools.
+        </p>
+
+        <div class="ai-buttons">
+          <button onclick="aiMessage('AI Image')">
+            🖼️ AI Image
+          </button>
+
+          <button onclick="aiMessage('AI Video')">
+            🎬 AI Video
+          </button>
+
+          <button onclick="aiMessage('AI Edit')">
+            ✨ AI Edit
+          </button>
+
+          <button onclick="aiMessage('AI Studio')">
+            🚀 AI Studio
+          </button>
+        </div>
+      </div>
+
+
+      <!-- MONETIZATION -->
+      <div class="card">
+        <h2>💳 Subscribe & Create</h2>
+
+        <p>
+          Get more AI credits, create more content and unlock premium
+          features.
+        </p>
+
+        <div class="features">
+
+          <div class="feature">
+            <strong>🪙 Buy Credits</strong>
+            <span>Pay for AI generations.</span>
+          </div>
+
+          <div class="feature">
+            <strong>⭐ Subscribe</strong>
+            <span>Unlock premium features.</span>
+          </div>
+
+          <div class="feature">
+            <strong>📢 Advertise</strong>
+            <span>Promote your content or business.</span>
+          </div>
+
+          <div class="feature">
+            <strong>💰 Payments</strong>
+            <span>Secure payment system.</span>
+          </div>
+
+        </div>
+
+        <button class="primary" onclick="subscribe()">
+          View Plans
+        </button>
+      </div>
+
+
+      <!-- SAMPLE FEED -->
+      <div class="card">
+        <h2>🔥 Community Feed</h2>
+
+        <p>
+          Posts from creators will appear here after the database is
+          connected.
+        </p>
+
+        <div class="post-actions">
+          <span>❤️ Like</span>
+          <span>💬 Comment</span>
+          <span>🔁 Repost</span>
+          <span>↗️ Share</span>
+        </div>
+      </div>
+
+
+      <!-- PLATFORM FEATURES -->
+      <div class="card">
+        <h2>Everything in one place</h2>
+
+        <div class="features">
+
+          <div class="feature">
+            <strong>👤 Profiles</strong>
+            <span>Creator profiles and posts.</span>
+          </div>
+
+          <div class="feature">
+            <strong>👥 Follow</strong>
+            <span>Follow other creators.</span>
+          </div>
+
+          <div class="feature">
+            <strong>🔔 Notifications</strong>
+            <span>Likes, comments and follows.</span>
+          </div>
+
+          <div class="feature">
+            <strong>🚨 Reports</strong>
+            <span>Report unsafe content.</span>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+
+
+    <!-- NAVIGATION -->
+    <nav class="bottom-nav">
+
+      <div class="nav-item active">
+        <span class="nav-icon">🏠</span>
+        Home
+      </div>
+
+      <div class="nav-item">
+        <span class="nav-icon">🔍</span>
+        Explore
+      </div>
+
+      <div class="nav-item">
+        <span class="nav-icon">➕</span>
+        Create
+      </div>
+
+      <div class="nav-item">
+        <span class="nav-icon">🔔</span>
+        Alerts
+      </div>
+
+      <div class="nav-item">
+        <span class="nav-icon">👤</span>
+        Profile
+      </div>
+
+    </nav>
+
+  </section>
+
+
+  <script>
+
+    let loginMode = false;
+
+    function toggleAuth() {
+
+      loginMode = !loginMode;
+
+      const username = document.getElementById("username");
+      const button = document.getElementById("authButtonText");
+      const description = document.getElementById("authDescription");
+      const switchText = document.getElementById("switchText");
+      const switchButton = document.getElementById("switchButton");
+
+      if (loginMode) {
+
+        username.classList.add("hidden");
+
+        button.textContent = "Login";
+
+        description.textContent =
+          "Login to your Paris Content Maker account.";
+
+        switchText.textContent =
+          "Don't have an account?";
+
+        switchButton.textContent =
+          "Create Account";
+
+      } else {
+
+        username.classList.remove("hidden");
+
+        button.textContent = "Create Account";
+
+        description.textContent =
+          "Create your account and join the community.";
+
+        switchText.textContent =
+          "Already have an account?";
+
+        switchButton.textContent =
+          "Login";
+      }
     }
 
 
-    if (!input) {
+    function submitAuth() {
 
-      result.style.display = "block";
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
 
-      result.innerText =
-        "Tell Paris what you want your content to be about.";
+      if (!email || !password) {
+        alert("Please enter your email and password.");
+        return;
+      }
 
-      copyButton.style.display = "none";
+      /*
+        REAL SUPABASE AUTHENTICATION
+        WILL BE CONNECTED IN THE NEXT STEP.
+      */
 
-      return;
-    }
-
-
-    let output = "";
-
-
-    if (selectedTool === "Funny POV") {
-
-      output =
-        "POV: " +
-        input +
-        "\n\n" +
-        "You thought everything was going well... " +
-        "until life decided to embarrass you 😂";
+      document.getElementById("authScreen").classList.add("hidden");
+      document.getElementById("app").classList.remove("hidden");
 
     }
 
 
-    else if (selectedTool === "Video Idea") {
+    function createPost() {
 
-      output =
-        "🎬 VIDEO IDEA\n\n" +
-        "Platform: " +
-        selectedPlatform +
-        "\n\n" +
-        "Hook: Start with something unexpected about " +
-        input +
-        ".\n\n" +
-        "Scene 1: Show the situation.\n" +
-        "Scene 2: Make the problem bigger.\n" +
-        "Scene 3: Give the funny reaction.\n" +
-        "Ending: Add a surprising or funny twist.";
+      const input = document.getElementById("postInput");
+
+      if (!input.value.trim()) {
+        alert("Write something first.");
+        return;
+      }
+
+      alert(
+        "Post system will be connected to Supabase in the next step."
+      );
+
+      input.value = "";
+    }
+
+
+    function aiMessage(type) {
+
+      alert(
+        type +
+        " will be connected to a real AI service after the database and AI system are configured."
+      );
 
     }
 
 
-    else if (selectedTool === "Caption") {
+    function showCredits() {
 
-      output =
-        "😂 " +
-        input +
-        " but make it unforgettable.\n\n" +
-        "No explanation. Just vibes.";
+      alert(
+        "Your AI credits wallet will be connected to Supabase."
+      );
 
     }
 
 
-    else if (selectedTool === "Hashtags") {
+    function subscribe() {
 
-      output =
-        "#" +
-        input.replace(/\s+/g, "") +
-        " #ContentCreator #FunnyVideos #POV #Nigeria " +
-        "#TikTokNigeria #Creator #Viral";
+      alert(
+        "Subscription plans and payment system will be connected later."
+      );
 
     }
 
-
-    latestResult = output;
-
-    result.style.display = "block";
-    result.innerText = output;
-
-    copyButton.style.display = "block";
-  }
-
-
-  function copyResult() {
-
-    if (!latestResult) return;
-
-    navigator.clipboard.writeText(latestResult);
-
-    document.getElementById("copyButton").innerText =
-      "✅ Copied!";
-
-    setTimeout(() => {
-
-      document.getElementById("copyButton").innerText =
-        "📋 Copy Result";
-
-    }, 1500);
-  }
-
-
-  function quickQuestion(question) {
-
-    document.getElementById("aiInput").value =
-      question;
-
-  }
-
-
-  function askParisAI() {
-
-    const input =
-      document.getElementById("aiInput").value.trim();
-
-    const result =
-      document.getElementById("aiResult");
-
-    const copyButton =
-      document.getElementById("aiCopy");
-
-
-    if (!input) {
-
-      result.style.display = "block";
-
-      result.innerText =
-        "Ask Paris AI a question first.";
-
-      copyButton.style.display = "none";
-
-      return;
-    }
-
-
-    /*
-      This is the prototype response system.
-
-      A real AI model must be connected through
-      a secure backend later.
-
-      Never put a private AI API key directly
-      inside this browser code.
-    */
-
-
-    let answer =
-      "Paris AI:\n\n" +
-      "For your question: \"" +
-      input +
-      "\"\n\n" +
-
-      "Start by making the content simple, " +
-      "interesting and easy to understand. " +
-      "Use a strong opening, keep the video moving, " +
-      "and give people a reason to watch until the end.\n\n" +
-
-      "This is the first prototype of Paris AI. " +
-      "The full AI connection will be added through " +
-      "a secure backend in the next stage.";
-
-
-    latestAIResult = answer;
-
-    result.style.display = "block";
-
-    result.innerText = answer;
-
-    copyButton.style.display = "block";
-  }
-
-
-  function copyAIResult() {
-
-    if (!latestAIResult) return;
-
-    navigator.clipboard.writeText(latestAIResult);
-
-    document.getElementById("aiCopy").innerText =
-      "✅ Copied!";
-
-    setTimeout(() => {
-
-      document.getElementById("aiCopy").innerText =
-        "📋 Copy Answer";
-
-    }, 1500);
-  }
-
-</script>
+  </script>
 
 </body>
 </html>
